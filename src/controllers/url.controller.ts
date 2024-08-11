@@ -36,18 +36,20 @@ export const urlShortner = async(req:any,res:any,next:any)=>{
 }
 
 export const originalURL = async(req:any, res:any, next:any)=>{
-   if(!req.body.urlID){
+   console.log("Get URL", req.query);
+   
+   if(!req.body.urlID && !req.query.id){
       return res
       .status(404)
       .json({
-         'Error':"URL not found to short"
+         'Error':"Shortner URL not found"
       })
    }
 
    try {
       const getURL = await URLModel.findOneAndUpdate(
          {
-            shortnerID:req.body.urlID
+            shortnerID:req.body.urlID || req.query.id
          },
          {
             $push:{
