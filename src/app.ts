@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const rateLimmitingMiddleWare = require('./middleware/RateLimitter')
+
+app.use(rateLimmitingMiddleWare);
 
 app.use(express.json({
    limit: "16kb"

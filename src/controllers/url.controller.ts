@@ -36,7 +36,7 @@ export const urlShortner = async(req:any,res:any,next:any)=>{
 }
 
 export const originalURL = async(req:any, res:any, next:any)=>{
-   console.log("Get URL", req.query);
+   console.log("Get URL", req.body, req.query);
    
    if(!req.body.urlID && !req.query.id){
       return res
